@@ -6,9 +6,9 @@ const Navbar = () => {
             <div className="mycontainer flex justify-between items-center px-4 py-5 h-14">
 
             <div className="logo font-bold text-white text-2x1">
-                <span className='text-green-700'> &lt;</span>
+                <span className='text-green-500'> &lt;</span>
                 
-                <span>Gate</span><span className='text-green-700'>KEEP/&gt;</span>
+                <span>Gate</span><span className='text-green-500'>KEEP/&gt;</span>
                 
                 </div>
             <ul>
