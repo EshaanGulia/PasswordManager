@@ -3,25 +3,25 @@ import { useRef, useState, useEffect } from 'react';
 
 const Manager = () => {
     const ref = useRef()
-    const [form, setform] = useState({site: "", username: "", passwords: ""})
+    const [form, setform] = useState({ site: "", username: "", passwords: "" })
     const [passwordArray, setPasswordArray] = useState([])
 
     useEffect(() => {
         let passwords = localStorage.getItem("passwords");
-        if(passwords){
+        if (passwords) {
             setPasswordArray(JSON.parse(passwords));
         }
     }, [])
 
-    const showPassword = () =>{
+    const showPassword = () => {
         alert("show the password");
-        if(ref.current.src.includes ('src/assets/eyecros.png')){
+        if (ref.current.src.includes('src/assets/eyecros.png')) {
             ref.current.src = 'src/assets/eye.png'
         }
-        else{
+        else {
             ref.current.src = 'src/assets/eyecros.png'
         }
-        
+
     }
 
     const savePassword = () => {
@@ -33,7 +33,7 @@ const Manager = () => {
     }
 
     const handleChange = (e) => {
-        setform({...form, [e.target.name]: e.target.value})
+        setform({ ...form, [e.target.name]: e.target.value })
     }
 
     return (
@@ -58,20 +58,50 @@ const Manager = () => {
                         <input value={form.username} onChange={handleChange} placeholder='Enter username' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="username" id="" />
                         <div className='relative'>
 
-                        <input value={form.passwords} onChange={handleChange} placeholder='Enter password' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="passwords" id="" />
-                        <span className='absolute right-[3px] top-[3px] cursor-pointer onClick={showPassword}'>
-                            <img ref={ref} className='p-1' width={45} src="src/assets/eye.png" alt="eye"/>
-                        </span>
+                            <input value={form.passwords} onChange={handleChange} placeholder='Enter password' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="passwords" id="" />
+                            <span className='absolute right-[3px] top-[3px] cursor-pointer onClick={showPassword}'>
+                                <img ref={ref} className='p-1' width={45} src="src/assets/eye.png" alt="eye" />
+                            </span>
                         </div>
                     </div>
-                  
+
                     <button onClick={savePassword} className='flex justify-center items-center gap-2 bg-green-400 hover:bg-green-300 rounded-full px-4 py-2 w-fit border border-green-900'>
-                    <lord-icon
-                        src="https://cdn.lordicon.com/jectmwqf.json"
-                        trigger="hover"
-                    >
-                    </lord-icon>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/jectmwqf.json"
+                            trigger="hover"
+                        >
+                        </lord-icon>
                         Add Password</button>
+                </div>
+
+                <div className="passwords">
+                    <h2>Your Passwords</h2>
+                    <table className="table-auto w-full">
+                        <thead className='bg-green-800 text-white'>
+                            <tr>
+                                <th>Song</th>
+                                <th>Artist</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+                                <td>Malcolm Lockyer</td>
+                                <td>1961</td>
+                            </tr>
+                            <tr>
+                                <td>Witchy Woman</td>
+                                <td>The Eagles</td>
+                                <td>1972</td>
+                            </tr>
+                            <tr>
+                                <td>Shining Star</td>
+                                <td>Earth, Wind, and Fire</td>
+                                <td>1975</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
