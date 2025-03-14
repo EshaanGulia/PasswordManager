@@ -16,9 +16,17 @@ const Navbar = () => {
                     <a className='hover:font-bold' href='/'>Home</a>
                     <a className='hover:font-bold' href='/'>About</a>
                     <a className='hover:font-bold' href='/'>Contact</a>
+                    <img ref={ref} className='p-1' width={45} src="src/assets/eye.png" alt="eye" />
+                      toast.success("Password saved!", {
+                                position: "top-right",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                theme: "colored",
+                            });
+                        };
                 </li>
             </ul>}*/}
-            <button className='text-white bg-green-500 my-5 rounded-full flex justify-between items-center'>
+            <button className='text-white bg-green-700 my-5 rounded-full flex justify-between items-center ring-white ring-1'>
                 <img className='invert w-10 p-1' src="src/assets/github.png" alt="github logo" />
                 <span className='font-bold px-2'>Github</span>
             </button>
