@@ -26,7 +26,7 @@ const Navbar = () => {
                         };
                 </li>
             </ul>}*/}
-            <button className='text-white bg-green-700 my-5 rounded-full flex justify-between items-center ring-white ring-1'>
+            <button onClick={() => window.open('https://github.com/EshaanGulia/PasswordManager')}className='text-white bg-green-700 my-5 rounded-full flex justify-between items-center ring-white ring-1'>
                 <img className='invert w-10 p-1' src="src/assets/github.png" alt="github logo" />
                 <span className='font-bold px-2'>Github</span>
             </button>

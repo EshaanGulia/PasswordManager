@@ -26,15 +26,33 @@ const Manager = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "light",
+            theme: "dark",
         });
     };
 
     const savePassword = () => {
+        if(form.site.length >3 && form.username.length >3 &&form.passwords.length >3){
+
+        
         setPasswordArray([...passwordArray, {...form, id: uuidv4()}]);
         localStorage.setItem("passwords", JSON.stringify([...passwordArray, {...form, id: uuidv4()}]));
         console.log([...passwordArray, form])
         setform({ site: "", username: "", passwords: "" })
+        toast.success('Password saved successfully!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
+    }
+    else{
+        toast.success('Error: Password not saved!')
+    }
+
     };
 
     const deletePassword = (id) => {
@@ -44,6 +62,16 @@ const Manager = () => {
 
         setPasswordArray(passwordArray.filter(item=>item.id!==id));
         localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item=>item.id!==id)));
+        toast.success('Password deleted succesfully!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
        }
     };
 
@@ -51,6 +79,16 @@ const Manager = () => {
         console.log("Editing password with id ", id)
         setform(passwordArray.filter(i=>i.id===id)[0])
         setPasswordArray(passwordArray.filter(item=>item.id!==id));
+        toast.success('Password edited successfully!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
     
     };
 
@@ -82,7 +120,7 @@ const Manager = () => {
                 -[100px]"></div>
             </div>
 
-            <div className="mycontainer">
+            <div className=" p-2 md:p-0 mycontainer min-h-[90.25vh]">
                 <h1 className='text-5x1 text font-bold text-center mt-4'>
                     <span className='text-green-500'>&lt;</span>
                     <span>Gate</span><span className='text-green-500'>KEEP/&gt;</span>
@@ -90,11 +128,11 @@ const Manager = () => {
                 <p className='text-green-900 text-lg text-center'>Your own Password Manager</p>
 
                 <div className="flex flex-col p-4 text-black gap-8 items-center">
-                    <input value={form.site} onChange={handleChange} placeholder='Enter Website URL' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="site" />
-                    <div className="flex w-full justify-between gap-8">
-                        <input value={form.username} onChange={handleChange} placeholder='Enter username' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="username" />
+                    <input value={form.site} onChange={handleChange} placeholder='Enter Website URL' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="site" id="site"/>
+                    <div className="flex flex-col md:flex-row w-full justify-between gap-8">
+                        <input value={form.username} onChange={handleChange} placeholder='Enter username' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="username" id="username"/>
                         <div className='relative'>
-                            <input value={form.passwords} onChange={handleChange} placeholder='Enter password' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="passwords" />
+                            <input value={form.passwords} onChange={handleChange} placeholder='Enter password' className='rounded-full border border-green-500 w-full p-4 py-1' type="text" name="passwords" id="passwords"/>
                         </div>
                     </div>
 
