@@ -1,39 +1,47 @@
 import React from 'react'
+import LoginModal from './LoginModal';
 
-const Navbar = () => {
+// Navbar component with login/logout button and brand logo
+const Navbar = ({ isLoggedIn, setIsLoggedIn, openLoginModal, setOpenLoginModal }) => {
+
+    const logout = () => {
+        // Clear local storage and reset login state
+        sessionStorage.removeItem('user');
+        setIsLoggedIn(false);
+        setOpenLoginModal(true);
+    }
     return (
+        // Navigation bar with dark background and white text
         <nav className='bg-slate-800 text-white'>
             <div className="mycontainer flex justify-between items-center px-4 py-5 h-14">
 
-            <div className="logo font-bold text-white text-2x1">
-                <span className='text-green-500'> &lt;</span>
-                
-                <span>Gate</span><span className='text-green-500'>KEEP/&gt;</span>
-                
+                {/* Brand logo */}
+                <div className="logo font-bold text-white text-2x1">
+                    <span className='text-green-500'> &lt;</span>
+                    <span>Gate</span>
+                    <span className='text-green-500'>KEEP/&gt;</span>
                 </div>
-          {/*  <ul>
-                <li className='flex gap-4'>
-                    <a className='hover:font-bold' href='/'>Home</a>
-                    <a className='hover:font-bold' href='/'>About</a>
-                    <a className='hover:font-bold' href='/'>Contact</a>
-                    <img ref={ref} className='p-1' width={45} src="src/assets/eye.png" alt="eye" />
-                      toast.success("Password saved!", {
-                                position: "top-right",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                theme: "colored",
-                            });
-                        };
-                </li>
-            </ul>}*/}
-            <button onClick={() => window.open('https://github.com/EshaanGulia/PasswordManager')}className='text-white bg-green-700 my-5 rounded-full flex justify-between items-center ring-white ring-1'>
-                <img className='invert w-10 p-1' src="src/assets/github.png" alt="github logo" />
-                <span className='font-bold px-2'>Github</span>
-            </button>
+
+                {/* Login / Logout button */}
+                {isLoggedIn ? (
+                    <button
+                        onClick={() => {
+                            // Toggle the login modal
+                            logout();
+                            setIsLoggedIn(false);
+                        }}
+                        className='text-white bg-green-700 my-5 rounded-full flex justify-between items-center p-1 border-none'
+                    >
+                        {/* Display 'Login' or 'Log Out' based on login state */}
+                        <span className='font-bold px-2'>Logout</span>
+                    </button>
+
+
+                ) : (null)}
 
             </div>
         </nav>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
